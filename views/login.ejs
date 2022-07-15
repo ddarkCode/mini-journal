@@ -1,0 +1,25 @@
+
+<%- include("partials/header"); -%>
+
+  
+ <form  action='/login' method='POST'>
+      <h2>Login</h2>
+
+      <div>
+        <label for="username"><i class="fa-solid fa-user"></i></label>
+        <input
+          id="username"
+          type="text"
+          placeholder="Enter Your User Name"
+          required
+        />
+      </div>
+      <div>
+        <label for="password"><i class="fa-solid fa-lock"></i></label>
+        <input id="password" type="text" placeholder="Enter Your Password" required />
+      </div>
+      <button type="submit">Submit</button>
+    </form>
+
+
+<%- include("partials/footer"); -%>

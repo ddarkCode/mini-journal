@@ -1,0 +1,29 @@
+{
+  "name": "mini-journal",
+  "version": "1.0.0",
+  "description": "A simple journal that allows you to digitally save your daily activities",
+  "main": "app.js",
+  "scripts": {
+    "dev": "set DEBUG=app, app:* && nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ddarkCode/mini-journal.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ddarkCode/mini-journal/issues"
+  },
+  "homepage": "https://github.com/ddarkCode/mini-journal#readme",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "debug": "^4.3.4",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "morgan": "^1.10.0"
+  }
+}

@@ -1,1 +1,1 @@
-# mini-blog
+# mini-journal
