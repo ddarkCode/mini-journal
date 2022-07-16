@@ -8,6 +8,12 @@ html {
 body {
   font-family: 'Roboto', sans-serif;
 }
+h2 {
+  margin-bottom: 0;
+}
+h4 {
+  margin-top: 0;
+}
 
 section {
   display: flex;
@@ -31,7 +37,7 @@ section p {
   font-size: 300;
 }
 
-form {
+.form {
   border-radius: 10px;
   width: 30vw;
   border: 1px solid black;
@@ -40,18 +46,37 @@ form {
   margin-top: 10vh;
   background-color: #ebebeb;
 }
-form h2 {
+.form h2 {
   text-align: center;
+  margin-bottom: 25px;
 }
 
-form div {
-  margin: 10px 5px;
+.form div {
   display: flex;
-  justify-content: space-between;
-  position: relative;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  margin-top: 10px;
 }
 
-form button {
+.form div .input {
+  width: calc(100% - 10px);
+  height: 50px;
+  border: 1px solid gray;
+  border-radius: 5px;
+  padding-left: 10px;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.form label {
+  color: rgb(85, 74, 74);
+  font-size: larger;
+}
+
+.form button {
   display: block;
   width: 80%;
   text-align: center;
@@ -63,37 +88,14 @@ form button {
   border: #fff;
 }
 
-form button:hover {
+.form button:hover {
   background-color: #fff;
   color: #00bfe6;
   border: 1px solid #00bfe6;
 }
 
-input {
-  width: calc(100% - 10px);
-  padding: 10px 5px;
-  border: 1px solid gray;
-  border-radius: 5px;
-  padding-left: 30px;
-}
-
-input:focus {
-  outline: none;
-}
-
-label {
-  position: absolute;
-  left: 10px;
-  top: 10px;
-}
-
-label span {
-  color: #5a5a5a;
-  margin-left: 10px;
-}
-
 .nav-links {
-  margin-top: 10px;
+  margin: 10px 0;
   display: flex;
 }
 

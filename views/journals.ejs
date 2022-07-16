@@ -2,16 +2,17 @@
 <%- include("partials/header"); -%>
 
 
-  <%  posts.forEach(function(post){ %>
+  <%  for (let i = journals.length - 1 ; i >= 0 ; i--) { %>
 
-    <h1><%=post.title%></h1>
+    <h2><%=journals[i].title%></h2>
+    <h4><%=journals[i].date%></h4>
     <p>
-    <%=post.content.substring(0, 100) + " ..."%>
-    <a href="/posts/<%=post.title%>">Read More</a>
+    <%=journals[i].content.substring(0, 100) + " ..."%>
+    <a href="/api/journals/<%=journals[i]._id%>">Read More</a>
     </p>
 
 
-    <% }) %>
+    <% } %>
 
 
 <%- include("partials/footer"); -%>

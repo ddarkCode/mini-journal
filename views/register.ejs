@@ -2,21 +2,23 @@
 <%- include("partials/header"); -%>
 
   
- <form  action='/register' method='POST'>
+ <form class='form' action='/auth/register' method='POST'>
       <h2>Register</h2>
 
-      <div>
-        <label for="username"><i class="fa-solid fa-user"></i></label>
+      <div >
+        <label for="username" class='label'>Enter Your User name</label>
         <input
           id="username"
           type="text"
-          placeholder="Enter Your User Name"
+           class='input'
+          name='username'
+          
           required
         />
       </div>
-      <div>
-        <label for="password"><i class="fa-solid fa-lock"></i></label>
-        <input id="password" type="text" placeholder="Enter Your Password" required />
+      <div >
+        <label for="password"  class='label'>Enter Your Password</label>
+        <input id="password" type="text"  class='input' name='password' required />
       </div>
       <button type="submit">Submit</button>
     </form>
