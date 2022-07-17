@@ -18,4 +18,5 @@ module.exports = function passportConfig(app) {
   });
 
   require('./strategies/localStrategy')();
+  require('./strategies/googleStrategy')();
 };

@@ -13,39 +13,19 @@ const startingContent = `What do Albert Einstein, Marie Curie and Leonardo da Vi
   Expressive writing through journaling can be a powerful way to process stress, trauma, and different emotions.
   `;
 const contactContent = 'Email: royal.ugoh@gmail.com';
-const posts = [
-  {
-    title: 'Simeon Lindstrom, Codependency',
-    content:
-      'When we have respect for ourselves and others, we gravitate towards connections that encourage that.',
-  },
-  {
-    title: 'L. R. Ellert',
-    content:
-      'A man should have the aim and the determination to be honest and upright and sincere in all that he undertakes. If he adds persistency to this he can hardly help being successful',
-  },
-  {
-    title: ' Kahlil Gibran',
-    content:
-      "The true wealth of a nation lies not in it's gold or silver but in it's learning, wisdom and in the uprightness of its sons.",
-  },
-];
 
 app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
-app.use(morgan('tiny'));
+app.use(morgan('dev'));
 app.use(
   session({
     secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
-    maxAge: 60 * 60 * 7 * 12,
   })
 );
-
-require('./src/config/passport')(app);
 
 connect(MONGO_URL, {}, (err) => {
   if (err) {
@@ -54,6 +34,8 @@ connect(MONGO_URL, {}, (err) => {
     debug('Database connected successfully.');
   }
 });
+
+require('./src/config/passport')(app);
 
 const journalRouter = require('./src/routes/journalRoutes')();
 const authRouter = require('./src/routes/authRoutes')();
@@ -68,6 +50,16 @@ app.get('/', (req, res) => {
     homeImg:
       'https://images.unsplash.com/photo-1581284943246-0eb528155992?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80',
   });
+});
+
+app.get('/compose', (req, res) => {
+  if (req.isAuthenticated()) {
+    res.render('compose', {
+      user: req.user,
+    });
+  } else {
+    res.redirect('/auth/login');
+  }
 });
 
 app.get('/contact', (req, res) => {

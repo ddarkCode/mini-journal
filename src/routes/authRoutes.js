@@ -55,6 +55,18 @@ function router() {
       })
     );
 
+  authRouter
+    .route('/google')
+    .get(passport.authenticate('google', { scope: ['profile'] }));
+  authRouter
+    .route('/google/verify')
+    .get(
+      passport.authenticate('google', { failureRedirect: '/auth/login' }),
+      (req, res) => {
+        res.redirect('/api/journals');
+      }
+    );
+
   return authRouter;
 }
 

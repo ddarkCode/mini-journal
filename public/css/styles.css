@@ -37,11 +37,19 @@ section p {
   font-size: 300;
 }
 
+.authContainer {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+}
+
 .form {
   border-radius: 10px;
   width: 30vw;
   border: 1px solid black;
   margin: 0 auto;
+  margin-bottom: 20px;
 
   margin-top: 10vh;
   background-color: #ebebeb;

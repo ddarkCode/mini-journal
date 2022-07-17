@@ -8,16 +8,16 @@ const today = require('../utils/date');
 function router() {
   const journalRouter = Router();
   journalRouter
-    .route('/journals')
-    .all((req, res, next) => {
+    .use((req, res, next) => {
       if (req.isAuthenticated()) {
         next();
       } else {
         res.redirect('/auth/login');
       }
     })
+    .route('/journals')
     .get((req, res) => {
-      User.findById(req.user._id, (err, foundUser) => {
+      User.findOne({ _id: req.user._id }, (err, foundUser) => {
         if (err) {
           debug(err);
           return res.redirect('/');
@@ -59,7 +59,7 @@ function router() {
     });
   journalRouter.route('/journals/:journalId').get((req, res) => {
     const { journalId } = req.params;
-    Journal.findById(journalId, (err, foundJournal) => {
+    Journal.findOne({ _id: journalId }, (err, foundJournal) => {
       if (err) {
         debug(err);
       } else {
@@ -70,11 +70,7 @@ function router() {
       }
     });
   });
-  journalRouter.route('/journals/compose').get((req, res) => {
-    res.render('compose', {
-      user: req.user,
-    });
-  });
+
   return journalRouter;
 }
 
