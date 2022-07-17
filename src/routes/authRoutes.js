@@ -19,24 +19,35 @@ function router() {
     .post((req, res) => {
       const { username, password } = req.body;
 
-      const newUser = new User({
-        username,
-        password,
-      });
-
-      newUser.save((err, savedUser) => {
+      User.register({ username }, password, (err, user) => {
         if (err) {
-          debug(err);
+          console.log(err);
+          res.redirect('/auth/register');
         } else {
-          req.login(savedUser, (err) => {
-            if (err) {
-              res.json(err);
-            } else {
-              res.redirect('/api/journals');
-            }
+          passport.authenticate('local')(req, res, () => {
+            res.redirect('/api/journals');
           });
         }
       });
+
+      // const newUser = new User({
+      //   username,
+      //   password,
+      // });
+
+      // newUser.save((err, savedUser) => {
+      //   if (err) {
+      //     debug(err);
+      //   } else {
+      //     req.login(savedUser, (err) => {
+      //       if (err) {
+      //         res.json(err);
+      //       } else {
+      //         res.redirect('/api/journals');
+      //       }
+      //     });
+      //   }
+      // });
     });
 
   authRouter
