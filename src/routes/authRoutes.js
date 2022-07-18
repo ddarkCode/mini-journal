@@ -29,25 +29,6 @@ function router() {
           });
         }
       });
-
-      // const newUser = new User({
-      //   username,
-      //   password,
-      // });
-
-      // newUser.save((err, savedUser) => {
-      //   if (err) {
-      //     debug(err);
-      //   } else {
-      //     req.login(savedUser, (err) => {
-      //       if (err) {
-      //         res.json(err);
-      //       } else {
-      //         res.redirect('/api/journals');
-      //       }
-      //     });
-      //   }
-      // });
     });
 
   authRouter
@@ -77,6 +58,22 @@ function router() {
         res.redirect('/api/journals');
       }
     );
+  authRouter.route('/question').get((req, res) => {
+    if (req.user) {
+      res.redirect('/api/jurnals');
+    } else {
+      res.render('question', { user: null });
+    }
+  });
+
+  authRouter.route('/logout').get((req, res) => {
+    req.logout((err) => {
+      if (err) {
+        return next(err);
+      }
+      res.redirect('/');
+    });
+  });
 
   return authRouter;
 }
